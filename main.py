@@ -6,30 +6,21 @@ from selenium.webdriver.common.keys import Keys
 driver = webdriver.Chrome()
 
 # 打開Google首頁
-driver.get("https://www.google.com")
-
-# 找到搜尋框元素
-search_box = driver.find_element(By.NAME, "q")
-
-# 在搜尋框輸入關鍵字
-search_box.send_keys("OpenAI")
-
-# 按下Enter執行搜索
-search_box.send_keys(Keys.RETURN)
+driver.get("https://tw.stock.yahoo.com/quote/2330.TW")
 
 # 等待搜尋結果頁面載入完成
 driver.implicitly_wait(10)
 
 # 找到所有的搜索結果元素
-search_results = driver.find_elements(By.CSS_SELECTOR, "div.g")
+element = driver.find_element(By.ID, "YDC-Stream")
 
-# 打印搜索結果標題和網址
-for result in search_results:
-    title = result.find_element(By.CSS_SELECTOR, "h3").text
-    url = result.find_element(By.CSS_SELECTOR, "a").get_attribute("href")
-    print(f"標題: {title}")
-    print(f"網址: {url}")
-    print()
+link_elements = element.find_elements(By.TAG_NAME, "a")
+# 提取並打印連結的URL
+for link_element in link_elements:
+    parent_element = link_element.find_element(By.XPATH, "..")
+    print(parent_element.text)
+    url = link_element.get_attribute("href")
+    print(url)
 
 # 關閉瀏覽器
 driver.quit()
