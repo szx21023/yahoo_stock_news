@@ -21,7 +21,18 @@ for element in elements:
     if element.find('div', {'class': 'controller gemini-ad native-ad-item Feedback Pos(r)'}):
         continue
 
-    print(element.getText())
+    tags = element.find_all("span")
+    for tag in tags:
+        print(tag)
+
+    tags = element.find_all("h3")
+    for tag in tags:
+        print(tag)
+
+    tags = element.find_all("p")
+    for tag in tags:
+        print(tag)
+
     urls = element.find_all("a")
     for url in urls:
         print(url.get("href"))
