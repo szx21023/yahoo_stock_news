@@ -3,11 +3,13 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 
+from config import host_url, stock_code, region
+
 # 創建一個Chrome瀏覽器實例
 driver = webdriver.Chrome()
 
 # 打開Google首頁
-driver.get("https://tw.stock.yahoo.com/quote/2330.TW")
+driver.get(f"{host_url}/{stock_code}.{region}")
 
 # 等待搜尋結果頁面載入完成
 driver.implicitly_wait(10)
