@@ -13,26 +13,30 @@ driver.get("https://tw.stock.yahoo.com/quote/2330.TW")
 driver.implicitly_wait(10)
 
 soup = BeautifulSoup(driver.page_source, 'html.parser')
-element = soup.find('div', {
-    'id': 'YDC-Stream'})
-elements = element.find_all('li', {'class': 'js-stream-content Pos(r)'})
+# element = soup.find('div', {
+#     'id': 'YDC-Stream'})
+elements = soup.find_all('li', {'class': 'js-stream-content Pos(r)'})
 for element in elements:
     # filter ad
     if element.find('div', {'class': 'controller gemini-ad native-ad-item Feedback Pos(r)'}):
         continue
 
+    # source web, post_time
     tags = element.find_all("span")
     for tag in tags:
         print(tag)
 
+    # title
     tags = element.find_all("h3")
     for tag in tags:
         print(tag)
 
+    # outline
     tags = element.find_all("p")
     for tag in tags:
         print(tag)
 
+    # link_url
     urls = element.find_all("a")
     for url in urls:
         print(url.get("href"))
