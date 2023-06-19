@@ -1,18 +1,14 @@
 import pymysql
 
-host = ''
-port = 3306
-user = ''
-password = ''
-database = ''
+from config import db_host, db_port, db_user, db_password, db_database
 
 # 連接到 MySQL 資料庫
 connection = pymysql.connect(
-    host = host,
-    port = port,
-    user = user,   # 使用者名稱
-    password = password,  # 使用者密碼
-    database = database   # 資料庫名稱
+    host = db_host,
+    port = db_port,
+    user = db_user,   # 使用者名稱
+    password = db_password,  # 使用者密碼
+    database = db_database   # 資料庫名稱
 )
 
 # 建立游標物件
