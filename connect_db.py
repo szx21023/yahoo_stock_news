@@ -12,25 +12,38 @@ connection = pymysql.connect(
 )
 
 # 建立游標物件
-cursor = connection.cursor()
+class Stock_news:
+    def __init__(self, connection):
+        self.cursor = connection.cursor()
 
-sql_insert = """INSERT INTO news (
-title, author, post_time, post_content, url, source, crawl_time) VALUES (
-%s, %s, %s, %s, %s, %s, %s)"""
-values = ('test', 'herrt', '2023/06/19 08:45:00', 'hello', 'https:127.0.0.1', 'local', '2023/06/19 08:46:00')
+    def insert(self, title, author, post_time, post_content, url, source, crawl_time):
+        sql_insert = """INSERT INTO news (
+        title, author, post_time, post_content, url, source, crawl_time) VALUES (
+        %s, %s, %s, %s, %s, %s, %s)"""
 
-cursor.execute(sql_insert, values)
-connection.commit()  # 提交修改
+        values = (title, author, post_time, post_content, url, source, crawl_time)
 
-# 執行 SQL 查詢
-sql_query = "SELECT * FROM news"
-cursor.execute(sql_query)
+        self.cursor.execute(sql_insert, values)
+        connection.commit()  # 提交修改
 
-# 擷取查詢結果
-results = cursor.fetchall()
-for row in results:
-    print(row)
+    def select(self):
+        # 執行 SQL 查詢
+        sql_query = "SELECT * FROM news"
+        self.cursor.execute(sql_query)
 
-# 關閉連接
-cursor.close()
-connection.close()
+        # 擷取查詢結果
+        results = self.cursor.fetchall()
+        for row in results:
+            print(row)
+
+stock_news = Stock_news(connection)
+
+title = 'test'
+author = 'herry'
+post_time = '2023/06/26 09:59:00'
+post_content = 'hello'
+url = 'https:127.0.0.1'
+source = 'local'
+crawl_time = '2023/06/26 10:0:00'
+stock_news.insert(title, author, post_time, post_content, url, source, crawl_time)
+stock_news.select()
