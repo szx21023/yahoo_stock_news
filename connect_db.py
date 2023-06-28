@@ -80,9 +80,9 @@ class Stock_news:
     def transform(self, sql):
         return sqlalchemy.text(sql) if self.gcp_mode else sql
 
-db_mode = False
-cursor, connection = generate_connector(db_mode)
-stock_news = Stock_news(cursor, connection, db_mode)
+gcp_mode = False
+cursor, connection = generate_connector(gcp_mode)
+stock_news = Stock_news(cursor, connection, gcp_mode)
 
 title = 'test'
 author = 'herry'
