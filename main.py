@@ -1,12 +1,16 @@
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 
 from config import host_url, stock_code, region
 
+options = Options()
+options.add_argument('--headless')
+
 # 創建一個Chrome瀏覽器實例
-driver = webdriver.Chrome()
+driver = webdriver.Chrome(options=options)
 
 # 打開Google首頁
 driver.get(f"{host_url}/{stock_code}.{region}")
