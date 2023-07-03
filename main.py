@@ -4,7 +4,11 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from bs4 import BeautifulSoup
 
+from datetime import datetime
+
 from config import host_url, stock_code, region
+from page_crawler import parser_content
+from connect_db import stock_news
 
 options = Options()
 options.add_argument('--headless')
@@ -29,24 +33,24 @@ for element in elements:
 
     # source web, post_time
     tags = element.find_all("span")
-    for tag in tags:
-        print(tag)
+    source = ''.join([tag.text for tag in tags[:1]])
 
     # title
     tags = element.find_all("h3")
-    for tag in tags:
-        print(tag)
+    title = ''.join([tag.text for tag in tags])
 
-    # outline
-    tags = element.find_all("p")
-    for tag in tags:
-        print(tag)
+    # # outline
+    # tags = element.find_all("p")
+    # for tag in tags:
+    #     print(tag)
 
     # link_url
-    urls = element.find_all("a")
-    for url in urls:
-        print(url.get("href"))
+    tags = element.find_all("a")
+    url = tags[0].get("href")
+    attr = parser_content(url)
 
+    crawl_time = str(datetime.now())
+    stock_news.insert(attr['title'], attr['author'], attr['post_time'], attr['post_content'], url, source, crawl_time)
     print('----------------------------')
 
 # 關閉瀏覽器
