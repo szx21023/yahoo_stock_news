@@ -83,13 +83,3 @@ class Stock_news:
 gcp_mode = False
 cursor, connection = generate_connector(gcp_mode)
 stock_news = Stock_news(cursor, connection, gcp_mode)
-
-title = 'test'
-author = 'herry'
-post_time = '2023/06/28 22:08:00'
-post_content = 'hello'
-url = 'https:127.0.0.1'
-source = 'local'
-crawl_time = '2023/06/28 22:16:00'
-stock_news.insert(title, author, post_time, post_content, url, source, crawl_time)
-stock_news.select()
