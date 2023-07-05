@@ -22,6 +22,7 @@ greenlet==2.0.2
 h11==0.14.0
 httplib2==0.22.0
 idna==3.4
+lxml==4.9.2
 multidict==6.0.4
 outcome==1.2.0
 protobuf==4.23.3
