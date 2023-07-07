@@ -76,6 +76,6 @@ class Stock_news:
     def transform(self, sql):
         return sqlalchemy.text(sql) if self.gcp_mode else sql
 
-gcp_mode = False
+gcp_mode = True
 cursor, connection = generate_connector(gcp_mode)
 stock_news = Stock_news(cursor, connection, gcp_mode)
