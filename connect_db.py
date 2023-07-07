@@ -57,13 +57,9 @@ class Stock_news:
         self.cursor.execute(self.transform(sql_query))
         self.commit()
 
-    def select(self):
-        # 執行 SQL 查詢
-        sql_query = "SELECT * FROM news"
+    def select(self, sql_query):
         results = self.fetch_all(sql_query)
-        # 擷取查詢結果
-        for row in results:
-            print(row)
+        return results
 
     def commit(self):
         if self.gcp_mode:
