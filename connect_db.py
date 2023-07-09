@@ -52,8 +52,8 @@ class Stock_news:
         self.connection = connection
         self.gcp_mode = gcp_mode
 
-    def insert(self, title, author, post_time, post_content, url, source, crawl_time):
-        sql_query = f"""INSERT INTO news (title, author, post_time, post_content, url, source, crawl_time) VALUES ('{title}', '{author}', '{post_time}', '{post_content}', '{url}', '{source}', '{crawl_time}')"""
+    def insert(self, stock_code, title, author, post_time, post_content, url, source, crawl_time):
+        sql_query = f"""INSERT INTO news (stock_code, title, author, post_time, post_content, url, source, crawl_time) VALUES ('{stock_code}', '{title}', '{author}', '{post_time}', '{post_content}', '{url}', '{source}', '{crawl_time}')"""
         self.cursor.execute(self.transform(sql_query))
         self.commit()
 

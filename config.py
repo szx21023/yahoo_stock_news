@@ -1,8 +1,8 @@
 host_url = 'https://tw.stock.yahoo.com/quote'
-stock_code = 2330
+stock_list = []
 region = 'TW'
 
-db_host = ''
+db_host = '127.0.0.1'
 db_port = 3306
 db_user = ''
 db_password = ''

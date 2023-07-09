@@ -7,6 +7,7 @@ docker run -d -p 3306:3306 --env MYSQL_ROOT_PASSWORD=000000 mysql
 ```
 CREATE DATABASE stock;
 CREATE TABLE news (
+    stock_code INT,
     title varchar(255),
     author varchar(255),
     post_time varchar(255),
